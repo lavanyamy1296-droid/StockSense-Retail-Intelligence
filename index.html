@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockSense | Retail Intelligence</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">S</div><div><b>stocksense</b><small>RETAIL INTELLIGENCE</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <button class="nav active" data-view="overview">▦ <span>Overview</span></button>
+    <button class="nav" data-view="products">▤ <span>Product insights</span></button>
+    <button class="nav" data-view="forecast">⌁ <span>Demand forecast</span></button>
+    <div class="side-bottom"><div class="status-dot"></div><div><b>Demo workspace</b><small>Local data · Private</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">MONDAY, RETAIL OPERATIONS</div><h1 id="page-title">Overview</h1></div><div class="top-actions"><label class="upload-btn">＋ Import CSV<input type="file" id="csv-file" accept=".csv,text/csv" hidden></label><button class="avatar">SS</button></div></header>
+    <section id="overview-view">
+      <div class="welcome"><div><span class="pill">● LIVE DEMO DATA</span><h2>Good morning, Store Manager</h2><p>Here's what's happening across your inventory today.</p></div><button class="outline" id="reset">↻ Reset sample data</button></div>
+      <div class="kpis">
+        <article class="kpi"><div class="kpi-top"><span>Total revenue</span><span class="kpi-icon purple">↗</span></div><strong id="revenue">₹0</strong><small class="positive">↑ 12.8% <span>vs previous period</span></small></article>
+        <article class="kpi"><div class="kpi-top"><span>Units sold</span><span class="kpi-icon blue">▥</span></div><strong id="units">0</strong><small class="positive">↑ 8.4% <span>vs previous period</span></small></article>
+        <article class="kpi"><div class="kpi-top"><span>Active products</span><span class="kpi-icon orange">◇</span></div><strong id="active">0</strong><small class="muted">Across all categories</small></article>
+        <article class="kpi"><div class="kpi-top"><span>Stock alerts</span><span class="kpi-icon red">!</span></div><strong id="alerts">0</strong><small class="warning">Needs attention</small></article>
+      </div>
+      <div class="content-grid">
+        <article class="panel chart-panel"><div class="panel-head"><div><h3>Sales performance</h3><p>Revenue trend over the last 7 days</p></div><span class="select-static">Last 7 days⌄</span></div><div class="chart-wrap"><canvas id="sales-chart"></canvas></div><div class="chart-legend"><span><i></i> Revenue</span><b id="chart-total">₹0 total</b></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Inventory health</h3><p>Current stock distribution</p></div></div><div class="donut-area"><div class="donut" id="donut"><div><b id="healthy-pct">0%</b><small>Healthy</small></div></div></div><div class="health-legend"><div><i class="green"></i> Healthy stock <b id="healthy-count">0</b></div><div><i class="yellow"></i> Low stock <b id="low-count">0</b></div><div><i class="red-bg"></i> Critical <b id="critical-count">0</b></div></div></article>
+      </div>
+      <div class="content-grid lower-grid">
+        <article class="panel"><div class="panel-head"><div><h3>Top performing products</h3><p>Ranked by revenue contribution</p></div><button class="text-btn" data-go="products">View all →</button></div><div class="table-scroll"><table><thead><tr><th>PRODUCT</th><th>UNITS SOLD</th><th>REVENUE</th></tr></thead><tbody id="top-products"></tbody></table></div></article>
+        <article class="panel alert-panel"><div class="panel-head"><div><h3>Needs attention</h3><p>Restock recommendations</p></div><span class="alert-count" id="alert-count">0</span></div><div id="alerts-list" class="alerts-list"></div></article>
+      </div>
+      <div class="footnote" id="data-note">Showing built-in sample dataset · Import a CSV to analyse your own store data.</div>
+    </section>
+    <section id="products-view" class="hidden">
+      <div class="section-intro"><div><h2>Product insights</h2><p>Understand what's selling and what needs a closer look.</p></div><input id="product-search" class="search" placeholder="⌕  Search products..."></div>
+      <div class="panel"><div class="table-scroll"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>UNITS SOLD</th><th>REVENUE</th><th>STOCK LEFT</th><th>STATUS</th></tr></thead><tbody id="all-products"></tbody></table></div></div>
+    </section>
+    <section id="forecast-view" class="hidden">
+      <div class="section-intro"><div><h2>Demand forecast</h2><p>A simple 7-day projection based on recent sales velocity.</p></div><span class="pill">HEURISTIC ESTIMATE</span></div>
+      <div class="forecast-cards" id="forecast-cards"></div>
+      <div class="panel"><div class="panel-head"><div><h3>Replenishment suggestions</h3><p>Estimated quantities to cover the next 7 days plus a small safety buffer.</p></div></div><div class="table-scroll"><table><thead><tr><th>PRODUCT</th><th>DAILY AVG.</th><th>7-DAY DEMAND</th><th>STOCK LEFT</th><th>SUGGESTED RESTOCK</th></tr></thead><tbody id="restock-table"></tbody></table></div></div>
+      <p class="method-note">Method: daily average = units sold ÷ 30 demo days. Forecast = daily average × 7. This is a transparent baseline estimate, not a trained machine-learning model.</p>
+    </section>
+  </main>
+</div><script src="app.js"></script>
+</body></html>
